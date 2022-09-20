@@ -1,0 +1,17 @@
+<div class="container pt-5 pb-3">
+  <table class="table table-light table-hover text-center mb-0">
+    <tr>
+      <th colspan="2">Tên sản phẩm</th>
+      <th>Số lượng</th>
+      <th>Giá</th>
+      <th>Tổng tiền</th>
+    </tr>
+    <tr *ngFor="let order of productOrders, index as i">
+      <td><img src="{{order.product.image}}" alt="" style="width: 50px;"></td>
+      <td class="text-left">{{order.product.name}}</td>
+      <td>{{order.quantity}}</td>
+      <td>{{order.product.price}}</td>
+      <td>{{order.totalMoney | currency: 'VND': ''}}<sup>đ</sup></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,51 @@
+<div class="body">
+  <div class="container">
+    <div class="d-flex justify-content-center h-100">
+      <div class="card">
+        <div class="card-header">
+          <h3>Đăng nhập</h3>
+          <div class="d-flex justify-content-end social_icon">
+            <span><i class="fab fa-facebook-square"></i></span>
+            <span><i class="fab fa-google-plus-square"></i></span>
+            <span><i class="fab fa-twitter-square"></i></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Tài khoản" formControlName="username">
+
+            </div>
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" placeholder="Mật khẩu" formControlName="password">
+            </div>
+            <div class="row align-items-center remember">
+              <input type="checkbox" (change)="rememberMe()" [checked]="rememberMeBox">Nhớ mật khẩu
+            </div>
+            <div class="form-group text-center">
+              <button *ngIf="btnLoginStatus" type="submit" style="font-size: 0.9rem" class="btn w-100 login_btn mt-2">Đăng nhập</button>
+              <button *ngIf="!btnLoginStatus" type="button" style="font-size: 0.9rem" class="btn w-100 login_btn mt-2" disabled>
+                <span class="spinner-border spinner-border-sm mb-1"></span>
+                Đang đăng nhập...
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center links">
+            Chưa có tài khoản?<a href="#">Đăng ký</a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a href="#">Quên mật khẩu?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
