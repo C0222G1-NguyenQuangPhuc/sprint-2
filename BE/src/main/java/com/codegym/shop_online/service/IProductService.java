@@ -20,4 +20,6 @@ public interface IProductService {
 
     Product findById(Integer id);
 
+    void deleteProduct(Integer id);
+
 }

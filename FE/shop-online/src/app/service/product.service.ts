@@ -39,4 +39,15 @@ export class ProductService {
     return this.http.post(API_URL + '/cart/ordered', customer);
   }
 
+  createNewProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(API_URL + '/products/create', product);
+  }
+
+  updateProduct(value: Product): Observable<Product> {
+    return this.http.patch<Product>(API_URL + '/products/edit', value);
+  }
+
+  deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(API_URL + '/products/delete/' + id);
+  }
 }

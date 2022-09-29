@@ -12,6 +12,7 @@ import {ProductOrder} from '../../model/product-order';
 import {Customer} from '../../model/customer';
 import {CartService} from '../../service/cart.service';
 import {CustomerService} from '../../service/customer.service';
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -139,5 +140,13 @@ export class HomeComponent implements OnInit {
 
   sendMessage(): void {
     this.reload.sendUpdate('Reload list');
+  }
+
+  deleteProduct(product: Product) {
+    this.productService.deleteProduct(product.id).subscribe(value => {
+      this.getAllProduct();
+      $('#deleteModal' + product.id).modal('hide');
+      this.toastr.success('Xóa thành công sản phẩm ' + product.name);
+    });
   }
 }

@@ -31,7 +31,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Page<Product> findAll(Pageable pageable) {
-        return iProductRepository.findAll(pageable);
+        return iProductRepository.findAllProduct(pageable);
     }
 
     @Override
@@ -47,5 +47,10 @@ public class ProductService implements IProductService {
     @Override
     public Product findById(Integer id) {
         return iProductRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        iProductRepository.deleteProduct(id);
     }
 }

@@ -99,7 +99,8 @@
               <div class="product-action">
                 <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i></a>
                 <a class="btn btn-outline-dark btn-square" routerLink="/cart"><i class="far fa-heart"></i></a>
-                <a class="btn btn-outline-dark btn-square" ><i class="fa fa-sync-alt"></i></a>
+                <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true && role == 'ADMIN'" (click)="getInfo(product)" data-toggle="modal"
+                   data-target="#deleteModal"><i class="fa fa-trash"></i></a>
                 <a class="btn btn-outline-dark btn-square" routerLink="/detail/{{product.id}}"><i class="fa fa-search"></i></a>
               </div>
             </div>
@@ -136,3 +137,24 @@
   </div>
 </div>
 <!-- Shop End -->
+
+<!--Start Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Xác nhận thông tin sản phẩm</h5>
+      </div>
+      <div class="modal-body">
+        <ol style="width: 100%; margin-top: 10px">
+          <li style="color: #9a9a9a; font-size: 1.2rem">{{nameDelete}}</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" (click)="deleteProduct()" data-dismiss="modal">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Delete Modal-->

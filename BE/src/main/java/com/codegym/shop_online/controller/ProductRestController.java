@@ -1,7 +1,10 @@
 package com.codegym.shop_online.controller;
 
+import com.codegym.shop_online.dto.ErrorDto;
+import com.codegym.shop_online.dto.ProductDto;
 import com.codegym.shop_online.model.Product;
 import com.codegym.shop_online.service.IProductService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,8 +14,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -67,6 +72,43 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<?> createNewProduct(@Valid @RequestBody ProductDto productDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        Product product = new Product();
+        BeanUtils.copyProperties(productDto, product);
+        this.iProductService.save(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/edit", method = RequestMethod.PATCH)
+    public ResponseEntity<?> updateProduct(@Valid @RequestBody ProductDto productDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        Product product = new Product();
+        BeanUtils.copyProperties(productDto, product);
+        this.iProductService.save(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
+        Product product = this.iProductService.findById(id);
+        if (product != null){
+            this.iProductService.deleteProduct(product.getId());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setMessage("idnotfound");
+        return new ResponseEntity<>(errorDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

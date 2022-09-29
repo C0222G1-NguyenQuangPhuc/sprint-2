@@ -66,8 +66,8 @@
             <a routerLink="/shop" class="nav-item nav-link">Sản phẩm</a>
             <a routerLink="/cart" class="nav-item nav-link">Giỏ hàng</a>
             <a routerLink="/order" class="nav-item nav-link">Lịch sử đặt hàng</a>
-            <a href="" class="nav-item nav-link" *ngIf="role == 'ADMIN' && loginStatus == true">Thêm mới sản phẩm</a>
-            <a href="" class="nav-item nav-link">Liên hệ</a>
+            <a routerLink="/create" class="nav-item nav-link" *ngIf="role == 'ADMIN' && loginStatus == true">Thêm mới sản phẩm</a>
+            <a class="nav-item nav-link">Liên hệ</a>
           </div>
           <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
             <a href="" class="btn px-0">

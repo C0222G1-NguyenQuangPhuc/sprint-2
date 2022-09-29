@@ -9,6 +9,7 @@ import {Page403Component} from './component/error/page403/page403.component';
 import {ShopListComponent} from './component/shop/shop-list/shop-list.component';
 import {ShopDetailComponent} from './component/shop/shop-detail/shop-detail.component';
 import {UserOrderComponent} from './component/user/user-order/user-order.component';
+import {ShopCreateComponent} from './component/shop/shop-create/shop-create.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: '401', component: Page401Component},
   {path: '403', component: Page403Component},
   {path: '404', component: Page404Component},
-  {path: 'order', component: UserOrderComponent}
+  {path: 'order', component: UserOrderComponent},
+  {path: 'create', component: ShopCreateComponent}
 ];
 
 @NgModule({

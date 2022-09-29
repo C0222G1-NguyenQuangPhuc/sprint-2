@@ -130,7 +130,7 @@
           <div class="product-action">
             <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i></a>
             <a class="btn btn-outline-dark btn-square" routerLink="/cart"><i class="far fa-heart"></i></a>
-            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+            <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true && role == 'ADMIN'" ><i class="fa fa-trash"></i></a>
             <a class="btn btn-outline-dark btn-square" routerLink="/detail/{{product.id}}"><i class="fa fa-search"></i></a>
           </div>
         </div>

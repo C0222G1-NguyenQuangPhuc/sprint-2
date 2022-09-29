@@ -1,0 +1,61 @@
+<div class="container mt-3">
+  <h2 class="text-center mt-4">Thêm mới máy tính</h2>
+  <div class="row d-flex">
+    <div class="col-lg-8">
+      <form class="form-group w-100" [formGroup]="formCreate" (ngSubmit)="createProduct()">
+        <div class="">
+          <label for="name">Tên sản phẩm</label>
+          <input class="form-control" type="text" id="name" placeholder="Nhập tên sản phẩm" formControlName="name" autocomplete="off">
+        </div>
+        <div>
+          <label for="releaseTime">Thời gian phát hành</label>
+          <input class="form-control" type="datetime-local" id="releaseTime" placeholder="Nhập thời gian phát hành" formControlName="releaseTime" autocomplete="off">
+        </div>
+        <div>
+          <label for="manufactureTime">Thời gian sản xuất</label>
+          <input class="form-control" type="datetime-local" id="manufactureTime" placeholder="Nhập thời gian sản xuất" formControlName="manufactureTime" autocomplete="off">
+        </div>
+        <div>
+          <label for="manufacturer">Tên nhà sản xuất</label>
+          <input class="form-control" type="text" id="manufacturer" placeholder="Nhập tên nhà sản xuất" formControlName="manufacturer" autocomplete="off">
+        </div>
+        <div>
+          <label for="price">Giá sản phẩm</label>
+          <input class="form-control" type="number" id="price" placeholder="Nhập giá sản phẩm" formControlName="price" autocomplete="off">
+        </div>
+        <div>
+          <label for="warranty">Thời gian bảo hành</label>
+          <input class="form-control" type="text" id="warranty" placeholder="Nhập thời gian bảo hành" formControlName="warranty" autocomplete="off">
+        </div>
+        <div>
+          <label for="quantity">Số lượng</label>
+          <input class="form-control" type="number" id="quantity" placeholder="Nhập số lượng" formControlName="quantity" autocomplete="off">
+        </div>
+        <div>
+          <label for="image">Hình ảnh sản phẩm</label>
+          <input class="form-control" type="file" (change)="showPreview($event)" id="image" placeholder="Chọn hình ảnh sản phẩm" formControlName="image" autocomplete="off">
+        </div>
+        <div>
+          <label for="category">Danh mục</label>
+          <select class="form-control" name="" id="category" formControlName="category">
+            <option value="" [selected]="true" [disabled]="true">--Chọn danh mục--</option>
+            <option *ngFor="let category of categories; index as i" [ngValue]="category">{{category.name}}</option>
+          </select>
+        </div>
+        <div class="w-100">
+          <button routerLink="" class="w-50 btn btn-dark">Quay lại</button>
+          <button type="submit" class="w-50 btn btn-primary">Tạo mới</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-center m-auto font-weight-bold">Ảnh sản phẩm</span>
+      </h4>
+      <div class="w-100">
+        <img [src]="imgSrc" style="width: 100%; height: auto">
+      </div>
+    </div>
+  </div>
+
+</div>

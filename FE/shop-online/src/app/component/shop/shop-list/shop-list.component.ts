@@ -28,6 +28,8 @@ export class ShopListComponent implements OnInit {
   infoStatus = true;
   username = '';
   role = '';
+  productDelete: Product;
+  nameDelete = '';
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -56,6 +58,7 @@ export class ShopListComponent implements OnInit {
       if (value) {
         this.auth.getRoles().subscribe(resp => {
           this.getRole(resp);
+          console.log(this.role);
           this.getCustomerByUsername(resp.username);
         }, () => {
         });
@@ -130,5 +133,28 @@ export class ShopListComponent implements OnInit {
 
   sendMessage(): void {
     this.reload.sendUpdate('Tải lại danh sách');
+  }
+
+  getAllProduct() {
+    this.productService.getAllPageProducts(this.page).subscribe((value: any) => {
+      this.products = value.content;
+    }, error => {
+      console.log(error);
+      this.router.navigateByUrl('/404');
+    });
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.productDelete.id).subscribe(value => {
+      this.getAllProduct();
+      this.toastr.success('Xóa thành công sản phẩm ' + this.productDelete.name);
+    }, error => {
+      this.toastr.error('Xóa không thành công');
+    });
+  }
+
+  getInfo(product: Product) {
+    this.productDelete = product;
+    this.nameDelete = product.name;
   }
 }
