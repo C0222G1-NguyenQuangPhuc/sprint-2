@@ -36,7 +36,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Product>> findAll(@PageableDefault(value = 8) Pageable pageable) {
+    public ResponseEntity<Page<Product>> findAll(@PageableDefault(value = 100) Pageable pageable) {
         Page<Product> productPage = iProductService.findAll(pageable);
         if (productPage.hasContent()) {
             return new ResponseEntity<>(productPage, HttpStatus.OK);

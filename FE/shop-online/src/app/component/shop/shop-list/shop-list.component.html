@@ -95,12 +95,13 @@
         <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let product of products">
           <div class="product-item bg-light mb-4">
             <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="/{{product.image}}" alt="">
+              <img class="img-fluid w-100" src="{{product.image}}" alt="">
               <div class="product-action">
                 <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true" (click)="addToCart(product)"><i class="fa fa-shopping-cart"></i></a>
-                <a class="btn btn-outline-dark btn-square" routerLink="/cart"><i class="far fa-heart"></i></a>
+<!--                <a class="btn btn-outline-dark btn-square" routerLink="/cart"><i class="far fa-heart"></i></a>-->
                 <a class="btn btn-outline-dark btn-square" *ngIf="loginStatus == true && infoStatus == true && role == 'ADMIN'" (click)="getInfo(product)" data-toggle="modal"
                    data-target="#deleteModal"><i class="fa fa-trash"></i></a>
+                <a class="btn btn-outline-dark btn-square" [routerLink]="['/edit', product.id]"><i class="far fa-edit"></i></a>
                 <a class="btn btn-outline-dark btn-square" routerLink="/detail/{{product.id}}"><i class="fa fa-search"></i></a>
               </div>
             </div>

@@ -26,6 +26,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import { ShopCreateComponent } from './component/shop/shop-create/shop-create.component';
+import { ShopEditComponent } from './component/shop/shop-edit/shop-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ShopCreateComponent } from './component/shop/shop-create/shop-create.co
     UserInfoComponent,
     UserOrderComponent,
     ShopCreateComponent,
+    ShopEditComponent,
   ],
   imports: [
     BrowserModule,

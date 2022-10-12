@@ -10,6 +10,7 @@ import {ShopListComponent} from './component/shop/shop-list/shop-list.component'
 import {ShopDetailComponent} from './component/shop/shop-detail/shop-detail.component';
 import {UserOrderComponent} from './component/user/user-order/user-order.component';
 import {ShopCreateComponent} from './component/shop/shop-create/shop-create.component';
+import {ShopEditComponent} from './component/shop/shop-edit/shop-edit.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'search/:name', component: ShopListComponent},
   {path: 'login', component: LoginComponent},
   {path: 'detail/:id', component: ShopDetailComponent},
+  {path: 'edit/:id', component: ShopEditComponent},
   {path: 'shop', component: ShopListComponent},
   {path: 'cart', component: CartComponent},
   {path: '401', component: Page401Component},

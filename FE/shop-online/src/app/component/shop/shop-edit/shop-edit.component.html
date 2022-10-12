@@ -1,8 +1,9 @@
 <div class="container mt-3">
-  <h2 class="text-center mt-4">Thêm mới sản phẩm</h2>
+  <h2 class="text-center mt-4">Chỉnh sửa sản phẩm</h2>
   <div class="row d-flex">
     <div class="col-lg-8">
-      <form class="form-group w-100" [formGroup]="formCreate" (ngSubmit)="createProduct()">
+      <form class="form-group w-100" [formGroup]="formEdit" (ngSubmit)="editSave()">
+        <input type="text" formControlName="id" hidden value="{{product.id}}">
         <div class="">
           <label for="name">Tên sản phẩm</label>
           <input class="form-control" type="text" id="name" placeholder="Nhập tên sản phẩm" formControlName="name" autocomplete="off">
@@ -37,14 +38,14 @@
         </div>
         <div>
           <label for="category">Danh mục</label>
-          <select class="form-control" name="" id="category" formControlName="category">
+          <select class="form-control" name="" id="category" [compareWith]="compareCategory" formControlName="category" [ngModel]="product.category">
             <option value="" [selected]="true" [disabled]="true">--Chọn danh mục--</option>
             <option *ngFor="let category of categories; index as i" [ngValue]="category">{{category.name}}</option>
           </select>
         </div>
         <div class="w-100">
           <button routerLink="" class="w-50 btn btn-dark">Quay lại</button>
-          <button type="submit" class="w-50 btn btn-primary">Tạo mới</button>
+          <button type="submit" class="w-50 btn btn-primary">Chỉnh sửa</button>
         </div>
       </form>
     </div>
