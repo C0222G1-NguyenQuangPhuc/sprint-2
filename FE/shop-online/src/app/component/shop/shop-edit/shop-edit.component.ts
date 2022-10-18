@@ -67,19 +67,6 @@ export class ShopEditComponent implements OnInit {
       image: new FormControl(this.product.image),
       category: new FormControl(this.product.category),
     });
-    this.formEdit = new FormGroup({
-      id: new FormControl(''),
-      name: new FormControl(''),
-      releaseTime: new FormControl(''),
-      manufactureTime: new FormControl(''),
-      manufacturer: new FormControl(''),
-      price: new FormControl(''),
-      warranty: new FormControl(''),
-      quantity: new FormControl(''),
-      image: new FormControl(''),
-      category: new FormControl(''),
-    });
-    this.formEdit.patchValue(this.product);
   }
 
   editSave() {

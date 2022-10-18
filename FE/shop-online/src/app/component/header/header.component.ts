@@ -11,6 +11,7 @@ import {Customer} from '../../model/customer';
 import {CustomerService} from '../../service/customer.service';
 import {CartService} from '../../service/cart.service';
 import {ProductOrder} from '../../model/product-order';
+import {SocialAuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ import {ProductOrder} from '../../model/product-order';
 export class HeaderComponent implements OnInit {
   role: string;
   btnLoginStatus = true;
+  checkFB = true;
   loginStatus: any;
   username: string;
   private subscriptionName: Subscription;
@@ -38,7 +40,8 @@ export class HeaderComponent implements OnInit {
               private route: ActivatedRoute,
               private productService: ProductService,
               private customerService: CustomerService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private social: SocialAuthService) {
     this.auth.checkLogin().subscribe(value => {
       this.loginStatus = value;
       this.role = this.readLocalStorage('role');
@@ -125,6 +128,7 @@ export class HeaderComponent implements OnInit {
     this.logout.onLogout().subscribe(() => {
       setTimeout(() => {
         this.router.navigateByUrl('/login').then(() => {
+          this.totalProductInCart = 0;
           this.toastr.success('Đăng xuất thành công');
           this.btnLoginStatus = true;
           this.sendMessage();

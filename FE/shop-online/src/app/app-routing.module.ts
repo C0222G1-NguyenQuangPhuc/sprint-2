@@ -11,6 +11,8 @@ import {ShopDetailComponent} from './component/shop/shop-detail/shop-detail.comp
 import {UserOrderComponent} from './component/user/user-order/user-order.component';
 import {ShopCreateComponent} from './component/shop/shop-create/shop-create.component';
 import {ShopEditComponent} from './component/shop/shop-edit/shop-edit.component';
+import {StatisticComponent} from './component/statistic/statistic.component';
+import {StatisticCustomerComponent} from './component/statistic-customer/statistic-customer.component';
 
 
 const routes: Routes = [
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path: '403', component: Page403Component},
   {path: '404', component: Page404Component},
   {path: 'order', component: UserOrderComponent},
-  {path: 'create', component: ShopCreateComponent}
+  {path: 'create', component: ShopCreateComponent},
+  {path: 'statistics', component: StatisticComponent},
+  {path: 'statistics/customer', component: StatisticCustomerComponent}
 ];
 
 @NgModule({

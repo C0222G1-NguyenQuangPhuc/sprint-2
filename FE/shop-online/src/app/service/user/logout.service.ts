@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -12,7 +12,7 @@ export class LogoutService {
 
   constructor(private http: HttpClient) { }
 
-  onLogout():Observable<any> {
-    return this.http.post(API_URL + "/log/out", null);
+  onLogout(): Observable<any> {
+    return this.http.post(API_URL + '/log/out', null);
   }
 }

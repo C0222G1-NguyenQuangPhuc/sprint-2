@@ -43,8 +43,8 @@ export class ProductService {
     return this.http.post<Product>(API_URL + '/products/create', product);
   }
 
-  updateProduct(value: Product): Observable<Product> {
-    return this.http.patch<Product>(API_URL + '/products/edit', value);
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.patch<Product>(API_URL + '/products/edit', product);
   }
 
   deleteProduct(id: number): Observable<Product> {

@@ -6,6 +6,9 @@ import {AuthService} from '../../service/user/auth.service';
 import {Router} from '@angular/router';
 import {ReloadService} from '../../service/user/reload.service';
 import {Subscription} from 'rxjs';
+import { SocialAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider} from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +22,15 @@ export class LoginComponent implements OnInit {
   btnLoginStatus = true;
   private subscriptionName: Subscription;
   private messageReceived: any;
+  user: SocialUser;
+  loggedIn: boolean;
 
   constructor(private loginService: LoginService,
               private toastr: ToastrService,
               private authService: AuthService,
               private reload: ReloadService,
-              private router: Router) {
+              private router: Router,
+              private social: SocialAuthService) {
     this.subscriptionName = this.reload.getUpdate().subscribe(message => {
       this.messageReceived = message;
     });
@@ -59,6 +65,31 @@ export class LoginComponent implements OnInit {
       }, () => {
       });
     }
+  }
+
+  signInWithFB(): void {
+    this.social.authState.subscribe(user => {
+      console.log(user);
+      this.loginService.goLogin({username: user.email, password: user.id}).subscribe(() => {
+        setTimeout(() => {
+          this.router.navigateByUrl('').then(() => {
+            this.toastr.success('Đăng nhập thành công');
+            this.btnLoginStatus = true;
+            this.sendMessage();
+            console.log(user);
+          });
+        }, 2000);
+      });
+    }, error => {
+      this.toastr.error('Tên đăng nhập hoặc mật khẩu không đúng');
+      console.log('error login');
+      this.btnLoginStatus = true;
+    });
+    this.social.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.social.signOut();
   }
 
   rememberMe() {

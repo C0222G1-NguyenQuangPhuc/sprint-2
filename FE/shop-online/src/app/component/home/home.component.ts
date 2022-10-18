@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
       this.products = value.content;
     }, error => {
       console.log(error);
-      this.router.navigateByUrl('/404');
+      this.router.navigateByUrl('/401');
     });
   }
 
@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit {
     this.productService.findAllByCategory(id).subscribe((value: any) => {
       this.products = value.content;
     }, error => {
-      this.router.navigateByUrl('/404');
+      this.router.navigateByUrl('/401');
     });
   }
 

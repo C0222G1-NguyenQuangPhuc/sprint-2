@@ -25,8 +25,16 @@ import {UserOrderComponent} from './component/user/user-order/user-order.compone
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import { ShopCreateComponent } from './component/shop/shop-create/shop-create.component';
-import { ShopEditComponent } from './component/shop/shop-edit/shop-edit.component';
+import {ShopCreateComponent} from './component/shop/shop-create/shop-create.component';
+import {ShopEditComponent} from './component/shop/shop-edit/shop-edit.component';
+import {StatisticComponent} from './component/statistic/statistic.component';
+import {StatisticCustomerComponent} from './component/statistic-customer/statistic-customer.component';
+import {ChartsModule} from 'ng2-charts';
+import {SocialLoginModule, SocialAuthServiceConfig, SocialAuthService} from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -45,6 +53,8 @@ import { ShopEditComponent } from './component/shop/shop-edit/shop-edit.componen
     UserOrderComponent,
     ShopCreateComponent,
     ShopEditComponent,
+    StatisticComponent,
+    StatisticCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,11 +75,29 @@ import { ShopEditComponent } from './component/shop/shop-edit/shop-edit.componen
     ),
     NgxPaginationModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ChartsModule,
+    SocialLoginModule
   ],
   providers: [
     // {provide: APP_BASE_HREF, useValue: '/', },
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('671535151229800'),
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
+    SocialAuthService,
   ],
   bootstrap: [AppComponent]
 })
